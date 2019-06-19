@@ -1,14 +1,14 @@
 
 #include "Node.h"
 
-Node::Node(Tile* tile, std::shared_ptr<Node> next) :
-   tile(tile),
+Node::Node(int data, std::shared_ptr<Node> next) :
+   data(data),
    next(next)
 {
 }
 
 Node::Node(const Node& other) :
-   tile(other.tile),
+   data(other.data),
    next(other.next)
 {
 }
