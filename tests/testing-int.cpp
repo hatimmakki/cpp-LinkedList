@@ -47,7 +47,8 @@ int main(void) {
 }
 
 void test_prepend(){
-	LinkedList* list = new LinkedList();
+	
+	LinkedList<int>* list = new LinkedList<int>();
 
 	list->prepend(1);
 	list->prepend(2);
@@ -63,7 +64,7 @@ void test_prepend(){
 }
 
 void test_deleteAt(){
-	LinkedList* list = new LinkedList();
+	LinkedList<int>* list = new LinkedList<int>();
 
 	list->prepend(1);
 	list->prepend(2);
@@ -77,13 +78,15 @@ void test_deleteAt(){
 	assert(!list->contains(7));
 
 	cout << WHITE_TEXT << "test_deleteAt: "<< GREEN_TEXT << "PASSED" << WHITE_TEXT << endl;
+	
 	list->clear();
 	if(list != nullptr) delete list;
 
 }
+
 void test_deleteFirst(){
 	
-	LinkedList* list = new LinkedList();
+	LinkedList<int>* list = new LinkedList<int>();
 
 	list->append(1);
 	list->append(2);
@@ -102,9 +105,8 @@ void test_deleteFirst(){
 
 }
 
-
 void test_contains(){
-	LinkedList* list = new LinkedList();
+	LinkedList<int>* list = new LinkedList<int>();
 
 	list->prepend(22);
 	list->prepend(33);
@@ -122,7 +124,7 @@ void test_contains(){
 }
 
 void test_getLastNode(){
-	LinkedList* list = new LinkedList();
+	LinkedList<int>* list = new LinkedList<int>();
 	
 	list->prepend(1);
 	list->prepend(2);
@@ -139,7 +141,7 @@ void test_getLastNode(){
 
 void test_append(){
 		
-		LinkedList* list = new LinkedList();
+		LinkedList<int>* list = new LinkedList<int>();
 		list->append(1);
 		list->append(2);
 		list->append(3);
@@ -155,8 +157,7 @@ void test_append(){
 
 void test_prepend_with_getLastNode(){
 	
-	LinkedList* list = new LinkedList();
-	
+	LinkedList<int>* list = new LinkedList<int>();
 	
 	list->prepend(1);   //last
 	list->prepend(2);
@@ -172,7 +173,7 @@ void test_prepend_with_getLastNode(){
 
 void test_get(){
 	
-	LinkedList* list = new LinkedList();
+	LinkedList<int>* list = new LinkedList<int>();
 
 	try{
 		
@@ -197,8 +198,7 @@ void test_get(){
 
 void test_deleteLast(){
 	
-	LinkedList* list = new LinkedList();
-
+	LinkedList<int>* list = new LinkedList<int>();
 
 	list->append(3);      // last
 	list->append(4);      // second
