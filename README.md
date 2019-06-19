@@ -6,9 +6,17 @@ implementation of Linked List of any type
 
 ## create a new list instance
 
+This linked list uses templates. So, you can use whatever type you want.
+The following example uses std::string as a type of the items in the list.
+
 ```c++
 LinkedList<std::string> list = LinkedList<std::string>();
 ```
+### Passed Types:
+
+- [x] std::string
+- [x] int
+- [x] float
 
 ## add items
 
