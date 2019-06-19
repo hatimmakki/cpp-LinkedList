@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
 	test_get_error_outofrange();
 	test_deleteFirst();
 	test_deleteLast();
-	test_contains();
+//	test_contains();
 	test_get_error_outofrange_deleteAt();
 
 }

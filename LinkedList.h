@@ -8,6 +8,13 @@
 #include <iostream>
 #include <memory>
 
+
+
+/*
+
+   A collection of items implemented using Linked List algorithm
+   
+*/
 template <typename T>
 class LinkedList {
    public:
@@ -22,19 +29,25 @@ class LinkedList {
          this->clear();
       }
 
+      /*
+         Clears all items in the list
+      */
       void clear() {
-         std::shared_ptr<Node<T>> node = head;
-         
-         while (node != nullptr) {
-            std::shared_ptr<Node<T>> save = node->next;
-            // delete node;
-            node = save;
-         }
+
          head = nullptr;
          this->iSize = 0;
 
       }
       
+      
+      /*
+         Gets item by index
+         
+         Arguments:
+            i index : unsigned int
+         Throws:
+            std::out_of_range : if the index >= the size of the list
+      */
       T get(const unsigned int i) const {
          unsigned int internalIndex = 0;
          
@@ -58,6 +71,9 @@ class LinkedList {
 
       }
       
+      /*
+         Gets random item
+      */
       T getRand() const {
          int randomNum = rand() % this->size();
 
@@ -65,11 +81,23 @@ class LinkedList {
 
       }
       
+      /*
+         Appends an item to the list
+         
+         Arguments:
+            item : T (any type) - numbers and string is tested and passed all tests
+      */
       void add(T val){
          this->append(val);
       }
 
       
+      /*
+         Prepends an item to the list
+         
+         Arguments:
+            item : T (any type) - numbers and string is tested and passed all tests
+      */
       void prepend(T val){
          std::shared_ptr<Node<T>> node = std::make_shared<Node<T>>( Node<T>(val, nullptr) );
          node->next = head;
@@ -77,7 +105,12 @@ class LinkedList {
          this->sizeUp();
       }
 
-      
+      /*
+         Appends an item to the list
+         
+         Arguments:
+            item : T (any type) - numbers and string is tested and passed all tests
+      */
       void append(T val){
          // creqte new Node wpointing to nullptr
          //	TODO: fix structural programming
@@ -107,6 +140,13 @@ class LinkedList {
 
       }
       
+      
+      /*
+         Prints all the items
+         
+         e.g. 3, 43, 75, 23, 44,
+         
+      */
       void print(){
          // TODO: print example : 3, 4, 5, 83, 20, 1
          std::shared_ptr<Node<T>> node = this->head;
@@ -118,6 +158,13 @@ class LinkedList {
          std::cout <<  std::endl;
       }
       
+      /*
+         Returns a boolean showing whether the list contains this item or not
+         
+         Arguments:
+            i item : T (any type)
+      */
+
       bool contains(T i) const{
          bool found = false;
          std::shared_ptr<Node<T>> node = head;
@@ -136,6 +183,10 @@ class LinkedList {
 
       }
 
+      /*
+         Deletes the first item in the list
+         it does nothing if the list is empty
+      */
       void deleteFirst() {
          if(this->getSize() == 1){
             this->clear();
@@ -149,6 +200,11 @@ class LinkedList {
          
 
       }
+      
+      /*
+         Deletes the last item in the list
+         it does nothing if the list is empty
+      */
       void deleteLast() {
          if (this->getSize() == 1){
             // just clear
@@ -164,6 +220,19 @@ class LinkedList {
 
       }
       
+      
+      /*
+         Removes an item from the list by the value of the item
+         it does nothing if the item isn't in the list
+         Arguments:
+            val item's value : T (any type)
+         
+         e.g. 
+         lsit.print() // 1,5,3,4,
+         list.removeByValue(5);
+         lsit.print() // 1,3,4,
+         
+      */
       void removeByValue(T val) {
          bool found = false;
          
@@ -210,6 +279,10 @@ class LinkedList {
          }
 
       }
+      
+      /*
+         Returns the last node in the list         
+      */
       std::shared_ptr<Node<T>> getLastNode() {
          // loop until you get nullptr
 
@@ -223,7 +296,9 @@ class LinkedList {
          return node;
       }
 
-
+      /*
+         Returns the second last node in the list         
+      */
       std::shared_ptr<Node<T>> getSecondLastNode(){
          // loop until you get nullptr
          //	TODO: fix structural programming
@@ -238,30 +313,51 @@ class LinkedList {
          }
          return node;
       }
+      
+      /*
+         Returns the head of the list, which is the first item         
+      */
 
       std::shared_ptr<Node<T>> getHead(){
          return this->head;
       }
 
       
-      // Size
+      /*
+         Returns the size of the list         
+      */
       int size() const {
          return this->getSize();
       }
       
+      /*
+         Returns the size of the list         
+      */
       int getSize() const {
          return this->iSize;
 
       }
+      
+      /*
+         sets the size of the list         
+      */
       void setSize(unsigned int newValue) {
          this->iSize = newValue;
 
       }
+      
+      /*
+         increase the size by 1         
+      */
       void sizeUp(){
 
          this->iSize++;
       }
 
+
+      /*
+         decrease the size by 1         
+      */
       void sizeDown(){
 
          if(this->iSize <= 0)
@@ -269,6 +365,10 @@ class LinkedList {
          else
             this->iSize--;
       }
+
+      /*
+         Shuffles the items         
+      */
 
       void shuffle(){
          
@@ -285,6 +385,17 @@ class LinkedList {
             
          }
       }
+
+      /*
+         Deletes an item by index
+         
+         Arguments:
+            i index: the index of the item which you want to delete
+                     
+         Throw:
+            std::out_of_range
+            
+      */
 
       void deleteAt(unsigned int i) {
          if (i < this->size()){
@@ -316,8 +427,11 @@ class LinkedList {
 
       }
    private:
-//      Node* head;
+   
+      // the head node of the list
       std::shared_ptr<Node<T>> head;
+      
+      // list size
       int iSize;
 };
 
