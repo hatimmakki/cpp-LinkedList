@@ -1,6 +1,10 @@
 # cpp-LinkedList
 implementation of Linked List of any type
 
+# Diagram
+![Diagram of Typed LinkedList](../master/images/diagram.jpg)
+
+
 # Usage
 
 ## import
