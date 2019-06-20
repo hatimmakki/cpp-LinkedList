@@ -1,14 +1,11 @@
 
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
-
 #include "Node.h"
 #include <ctime>
 #include <cstdlib>
 #include <iostream>
 #include <memory>
-
-
 
 /*
 
@@ -39,7 +36,86 @@ class LinkedList {
 
       }
       
+      /*
+         overloading += operator for the list
+         used to APPEND a new item into the list
+         
+         list.print(); // 1, 44, 2, 6, 4,
+         e.g. list += 5
+         list.print(); // 1, 44, 2, 6, 4, 5,
+         
+         Arguments:
+            value the item you want to append : T (any type)
+            
+      */
+      LinkedList& operator+=(T value){
+         this->append(value);
+         return *this;
+      }
       
+      /*
+         overloading -= operator for the list
+         used to remove an item from the list
+         
+         list.print(); // 1, 44, 2, 6, 4,
+         e.g. list -= 44
+         list.print(); // 1, 2, 6, 4, 5,
+         
+         Arguments:
+            value the item you want to remove : T (any type)
+            
+      */
+      LinkedList& operator-=(T value){
+         this->removeByValue(value);
+         return *this;
+      }
+
+      /*
+         overloading -= operator for the list
+         used to remove a list of items from the list 
+            if the passed list is subset of this list
+         
+         list1.print(); // 1, 44, 2, 6, 4,
+         list2.print(); // 1, 44,
+         
+         e.g. list1 -= list2
+         list1.print(); // 2, 6, 4,
+         
+         Arguments:
+            other The list you want to remove : LinkedList
+            
+      */
+      LinkedList& operator-=( LinkedList& other){
+         
+         if( other.isSubsetOf(*this)){
+            std::shared_ptr<Node<T>> node = other.getHead();
+            
+            // if no items
+            if(other.getSize() > 0) {
+               while(node != nullptr){
+                  this->removeByValue(node->data);
+                  node = node->next;
+               }
+            }
+
+         }
+         return *this;
+      }
+
+      LinkedList& operator+=(const LinkedList& other){
+         
+         if(this->getSize() == 0){
+            this->head = other.head;
+         } else {
+            std::shared_ptr<Node<T>> lastNode = this->getLastNode();
+            lastNode->next = other.head;
+            
+         }
+         // edit size
+         this->setSize(this->getSize() + other.getSize());
+         return *this;
+      }
+
       /*
          Gets item by index
          
@@ -81,6 +157,46 @@ class LinkedList {
 
       }
       
+      /*
+         Detemines if a list is subset of this list or not
+      */
+      bool isSubset(LinkedList& other) const {
+
+         if(other.getSize() > 0){
+   //         for(int i = 0; i < other.getSize(); ++i){}
+            std::shared_ptr<Node<T>> node = other.getHead();
+            while(node != nullptr){
+               if(!this->contains(node->data)) return false;
+
+               node = node->next;
+            }
+            
+         }
+         
+         return true;
+      }
+      
+      /*
+         Detemines if a list is subset of this list or not
+      */
+      bool isSubsetOf(LinkedList& other) const {
+
+         if(this->getSize() > 0){
+   //         for(int i = 0; i < other.getSize(); ++i){}
+            std::shared_ptr<Node<T>> node = this->head;
+            while(node != nullptr){
+               if(!other.contains(node->data)) return false;
+
+               node = node->next;
+            }
+            
+         }
+         
+         return true;
+      }
+
+
+
       /*
          Appends an item to the list
          
