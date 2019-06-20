@@ -3,6 +3,17 @@ implementation of Linked List of any type
 
 # Usage
 
+## import
+Download the files and import LinkedList.h
+
+e.g. 
+
+```c++
+#include "LinkedList.h"
+#include <iostream>
+#include <exception>	// for exception handling
+#include <cstdint>
+```
 
 ## create a new list instance
 
